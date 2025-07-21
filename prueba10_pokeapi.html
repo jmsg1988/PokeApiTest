@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PokeApi Sencilla</title>
+        
+    </head>
+    <body>
+        <h1>Consulta de pokemon</h1>
+        <input type="text" id="nombrePokemon" placeholder="Escribe el nombre del pokemon">
+        <button id="buscar"> Buscar</button>
+
+        <h2>Datos del pokemon: </h2>
+        <div id="datoPokemon"></textarea>
+    </body>
+    <script src="prueba9_fetching.js"></script>
+    <script>
+        document.getElementById("buscar").addEventListener("click", async ()=>{
+            const nombre = document.getElementById("nombrePokemon").value.trim().toLowerCase();
+            const json = await peticion(nombre);
+            console.log(json["id"]);
+
+            const h2 = document.getElementsByTagName("h2")[0];
+            h2.textContent = "Datos del pokemon:" + " " + nombre;
+
+            const input = document.getElementById("datoPokemon");
+            input.textContent = json.id + " " +json.weight;
+        })
+
+        
+    </script>
+</html>
